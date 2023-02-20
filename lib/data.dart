@@ -35,4 +35,8 @@ abstract class Data {
     }
     return items;
   }
+
+  static List<Text> getCupertinoPickerItems() {
+    return _currencies.map((element) => Text(element)).toList();
+  }
 }

@@ -1,4 +1,5 @@
 import 'package:crypto_ticker/data.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -10,6 +11,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   String dropDownSelectedCurrency = 'RUB';
+  int cupertinoItemIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -35,14 +37,13 @@ class _HomeScreenState extends State<HomeScreen> {
             Container(
               color: Colors.black12,
               width: double.infinity,
-              child: DropdownButton(
-                  value: dropDownSelectedCurrency,
-                  items: Data.getDropDownItemsWithForLoop(),
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      dropDownSelectedCurrency = newValue!;
-                    });
-                  }),
+              child: CupertinoPicker(
+                itemExtent: 32.0,
+                onSelectedItemChanged: (item) {
+                  cupertinoItemIndex = item;
+                },
+                children: Data.getCupertinoPickerItems(),
+              ),
             )
           ],
         ),
